@@ -12,7 +12,7 @@ import ca.qc.cstj.s08bottomnavigation.databinding.FragmentSearchBinding
 import ca.qc.cstj.s08bottomnavigation.databinding.FragmentSettingsBinding
 import ca.qc.cstj.s08bottomnavigation.presentation.ui.search.SearchViewModel
 
-class SettingsFragment : Fragment(R.layout.fragment_search) {
+class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding: FragmentSettingsBinding by viewBinding()
     private val viewModel: SettingsViewModel by viewModels()
@@ -21,5 +21,14 @@ class SettingsFragment : Fragment(R.layout.fragment_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //viewLifecycleOwner = this dans un activity
+        viewModel.count.observe(viewLifecycleOwner) {
+            binding.txvCount.text = it.toString()
+        }
+
+        binding.btnAdd.setOnClickListener{
+            viewModel.add()
+        }
     }
 }
