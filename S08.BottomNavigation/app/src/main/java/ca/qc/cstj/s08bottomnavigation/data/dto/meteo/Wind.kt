@@ -1,0 +1,7 @@
+package ca.qc.cstj.s08bottomnavigation.data.dto.meteo
+
+data class Wind(
+    val deg: Int,
+    val gust: Double,
+    val speed: Double
+)
