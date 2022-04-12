@@ -1,6 +1,7 @@
 package ca.qc.cstj.s08bottomnavigation.data.datasources
 
 import ca.qc.cstj.s08bottomnavigation.core.Constants
+import ca.qc.cstj.s08bottomnavigation.data.dto.meteo.MeteoDTO
 import ca.qc.cstj.s08bottomnavigation.domain.models.Meteo
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.json.responseJson
@@ -23,9 +24,7 @@ class MeteoDataSource {
 
             when (result) {
                 is Result.Success -> {
-                    val meteoDTO = Json {
-                        ignoreUnknownKeys = true
-                    }.decodeFromString<MeteoDTO>(result.value.content)
+                    val meteoDTO = json.decodeFromString<MeteoDTO>(result.value.content)
 
                     return@withContext Meteo(
                         meteoDTO.name,
@@ -33,6 +32,7 @@ class MeteoDataSource {
                         meteoDTO.main.temp,
                         meteoDTO.weather[0].main,
                         meteoDTO.dt,
+                        meteoDTO.timezone,
                         meteoDTO.coord.lat,
                         meteoDTO.coord.lon
                     )
