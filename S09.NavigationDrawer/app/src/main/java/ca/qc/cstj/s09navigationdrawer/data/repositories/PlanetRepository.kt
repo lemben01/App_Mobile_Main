@@ -29,6 +29,10 @@ class PlanetRepository {
     }
 
     suspend fun retrieve(href: String) : Resource<Planet> {
-        TODO()
+        try {
+            return Resource.Success(planetDataSource.retrieve(href))
+        } catch (ex:Exception) {
+            return  Resource.Error(ex, ex.message)
+        }
     }
 }
