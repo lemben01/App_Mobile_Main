@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:label="@string/menu_barcode"
     app:startDestination="@+id/nav_list_planet">
 
     <fragment
         android:id="@+id/nav_list_planet"
         android:name="ca.qc.cstj.s09navigationdrawer.presentation.ui.planet.PlanetListFragment"
         android:label="@string/menu_planets"
-        tools:layout="@layout/fragment_list_planets" >
+        tools:layout="@layout/fragment_list_planets">
         <action
             android:id="@+id/action_nav_list_planet_to_nav_planet"
             app:destination="@id/nav_planet" />
@@ -28,11 +28,16 @@
         android:id="@+id/nav_planet"
         android:name="ca.qc.cstj.s09navigationdrawer.presentation.ui.planet.PlanetFragment"
         android:label="@string/planet"
-        tools:layout="@layout/fragment_planet" >
+        tools:layout="@layout/fragment_planet">
         <argument
             android:name="href"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_qr"
+        android:name="ca.qc.cstj.s09navigationdrawer.presentation.ui.barcode.BarcodeFragment"
+        android:label="fragment_barcode"
+        tools:layout="@layout/fragment_barcode" />
 
 
 </navigation>
